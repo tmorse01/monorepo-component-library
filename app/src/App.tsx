@@ -2,14 +2,17 @@ import { useState } from "react";
 
 // DEMONSTRATION: Subpath Imports (Recommended)
 // Only imports Button component - Table component is NOT bundled
-import { Button } from "@myorg/ui/button";
+// import { Button } from "@myorg/ui/button";
+
+// HEAVY COMPONENT DEMO: Adding Chart component adds ~200KB to bundle!
+import { Chart } from "@myorg/ui/chart";
 
 // Only imports date utilities - string/number/validation utils are NOT bundled
 import { formatDate, getRelativeTime } from "@myorg/utils/date";
 
 // ALTERNATIVE: Barrel Imports (Also works with tree-shaking)
 // Uncomment below to test barrel imports instead
-// import { Button } from '@myorg/ui';
+import { Button } from "@myorg/ui";
 // import { formatDate, getRelativeTime } from '@myorg/utils';
 
 function App() {
@@ -39,8 +42,12 @@ function App() {
         </h2>
         <ul style={{ lineHeight: "1.8" }}>
           <li>
-            <strong>Button component</strong> (~2KB) - Imported via{" "}
+            <strong>Button component</strong> (~1KB) - Imported via{" "}
             <code>@myorg/ui/button</code>
+          </li>
+          <li>
+            <strong>Chart component + Chart.js</strong> (~200KB) - Imported via{" "}
+            <code>@myorg/ui/chart</code> ⚠️
           </li>
           <li>
             <strong>Date utilities</strong> (~7KB) - Imported via{" "}
@@ -53,9 +60,6 @@ function App() {
           ❌ What's NOT in Bundle
         </h2>
         <ul style={{ lineHeight: "1.8" }}>
-          <li>
-            <strong>Chart component + Chart.js</strong> (~200KB) - Not imported, not bundled! 🎉
-          </li>
           <li>
             <strong>Table component</strong> (~6KB) - Not imported, not bundled!
           </li>
@@ -123,6 +127,32 @@ function App() {
               {getRelativeTime(new Date(Date.now() - 3600000))} (1 hour ago)
             </div>
           </div>
+        </div>
+
+        <div style={{ marginBottom: "20px" }}>
+          <p style={{ marginBottom: "10px" }}>
+            <strong>Using Chart Component (Chart.js ~200KB):</strong>
+          </p>
+          <div style={{ height: "300px" }}>
+            <Chart
+              type="line"
+              data={{
+                labels: ["Without Chart", "With Chart"],
+                datasets: [
+                  {
+                    label: "Bundle Size (KB)",
+                    data: [23, 193],
+                    borderColor: "#dc3545",
+                    backgroundColor: "rgba(220, 53, 69, 0.1)",
+                  },
+                ],
+              }}
+            />
+          </div>
+          <p style={{ fontSize: "14px", color: "#dc3545", marginTop: "10px" }}>
+            ⚠️ Notice: This Chart component adds ~170KB to your bundle! Remove
+            the import to see the difference.
+          </p>
         </div>
       </div>
 

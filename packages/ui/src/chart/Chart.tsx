@@ -11,9 +11,13 @@ import {
   Tooltip,
   Legend,
   Filler,
+  LineController,
+  BarController,
+  PieController,
+  DoughnutController,
 } from "chart.js";
 
-// Register Chart.js components (adds significant bundle size)
+// Register Chart.js components AND controllers (adds significant bundle size)
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,7 +28,11 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  LineController,
+  BarController,
+  PieController,
+  DoughnutController
 );
 
 export interface ChartProps {
@@ -45,12 +53,12 @@ export interface ChartProps {
 
 /**
  * Chart Component - VERY HEAVY (~200KB!)
- * 
+ *
  * A chart component using Chart.js library.
  * This component is intentionally heavy to demonstrate the impact
  * of tree-shaking. When NOT imported, the entire Chart.js library
  * (~200KB) should be excluded from the bundle.
- * 
+ *
  * This is the perfect example of why selective imports matter!
  */
 export function Chart({
