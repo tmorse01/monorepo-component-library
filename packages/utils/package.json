@@ -1,0 +1,49 @@
+{
+  "name": "@myorg/utils",
+  "version": "1.0.0",
+  "description": "Utility library with tree-shakeable category-based exports",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./date": {
+      "import": "./dist/date.js",
+      "types": "./dist/date.d.ts"
+    },
+    "./string": {
+      "import": "./dist/string.js",
+      "types": "./dist/string.d.ts"
+    },
+    "./number": {
+      "import": "./dist/number.js",
+      "types": "./dist/number.d.ts"
+    },
+    "./validation": {
+      "import": "./dist/validation.js",
+      "types": "./dist/validation.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

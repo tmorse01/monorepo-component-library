@@ -1,0 +1,23 @@
+{
+  "name": "monorepo-component-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo demonstrating sustainable component library practices with tree-shaking",
+  "scripts": {
+    "dev": "pnpm --filter app dev",
+    "build": "pnpm -r build",
+    "build:ui": "pnpm --filter @myorg/ui build",
+    "build:utils": "pnpm --filter @myorg/utils build",
+    "build:app": "pnpm --filter app build",
+    "analyze": "pnpm --filter app analyze",
+    "clean": "pnpm -r clean"
+  },
+  "keywords": [
+    "monorepo",
+    "component-library",
+    "tree-shaking",
+    "barrel-exports"
+  ],
+  "author": "",
+  "license": "MIT"
+}
